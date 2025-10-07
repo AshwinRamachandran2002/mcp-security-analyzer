@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, User, Database, AlertTriangle, Shield, FileText, Download, Upload, CheckCircle, XCircle } from "lucide-react";
-import { AttackVector } from '@/utils/attackVectorGenerator';
+import { AttackVector } from '@/lib/attack-vector-generator';
 
 interface AttackPathGraphProps {
   vector: AttackVector;

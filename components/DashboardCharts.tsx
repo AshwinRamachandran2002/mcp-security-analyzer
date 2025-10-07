@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PieChart, Shield } from "lucide-react";
-import { generateAttackVectors, getAttackStatistics } from "@/utils/attackVectorGenerator";
 
 interface DashboardChartsProps {
   totalFunctions: number;
@@ -39,18 +38,25 @@ export function DashboardCharts({
   const pieChartRef = useRef<SVGSVGElement>(null);
   const attackTypeChartRef = useRef<SVGSVGElement>(null);
 
-  // Load dynamic attack vector data
+  // Load dynamic attack vector data from API
   useEffect(() => {
-    try {
-      const vectors = generateAttackVectors();
-      const stats = getAttackStatistics();
-      setAttackVectors(vectors);
-      setAttackStats(stats);
-    } catch (error) {
-      console.error('Error loading attack vectors:', error);
-    } finally {
-      setLoading(false);
-    }
+    const loadData = async () => {
+      try {
+        const response = await fetch('/api/attack-vectors?page=1&pageSize=1000');
+        const data = await response.json();
+
+        if (data.success) {
+          setAttackVectors(data.vectors);
+          setAttackStats(data.stats);
+        }
+      } catch (error) {
+        console.error('Error loading attack vectors:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
   }, []);
 
   // Server Distribution Pie Chart

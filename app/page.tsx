@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Bug, Eye, Zap, AlertTriangle, CheckCircle, XCircle, TrendingUp, TrendingDown, Activity, Database, RefreshCw, Play, Clock, Settings } from "lucide-react";
 import { DashboardCharts } from "@/components/DashboardCharts";
-import { generateAttackVectors, getAttackStatistics } from "@/utils/attackVectorGenerator";
 
 // No hardcoded function data imports - everything is dynamic
 
@@ -38,18 +37,25 @@ export default function Page() {
   // All function counts come from dynamic enterprise metrics, not hardcoded data
   const totalFunctions = enterpriseMetrics?.metrics?.total_functions || 0;
 
-  // Load dynamic attack vector data
+  // Load dynamic attack vector data from API
   useEffect(() => {
-    try {
-      const vectors = generateAttackVectors();
-      const stats = getAttackStatistics();
-      setAttackVectors(vectors);
-      setAttackStats(stats);
-    } catch (error) {
-      console.error('Error loading attack vectors:', error);
-    } finally {
-      setLoading(false);
-    }
+    const loadAttackVectors = async () => {
+      try {
+        const response = await fetch('/api/attack-vectors?page=1&pageSize=1000');
+        const data = await response.json();
+
+        if (data.success) {
+          setAttackVectors(data.vectors);
+          setAttackStats(data.stats);
+        }
+      } catch (error) {
+        console.error('Error loading attack vectors:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadAttackVectors();
   }, []);
 
   // Load enterprise metrics
