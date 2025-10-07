@@ -47,3 +47,6 @@ data/discovered/*.json
 data/analysis/*.json
 !data/discovered/.gitkeep
 !data/analysis/.gitkeep
+
+# Archive folder (old/unused code and data)
+archive/
