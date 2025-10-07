@@ -121,8 +121,8 @@ flowchart LR
 
 ```bash
 # Clone the repository
-git clone https://github.com/AshwinRamachandran2002/Agent_Red_Team.git
-cd Agent_Red_Team/router
+git clone https://github.com/AshwinRamachandran2002/mcp-security-analyzer.git
+cd mcp-security-analyzer
 
 # Install dependencies
 npm install
@@ -400,13 +400,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Ashwin Ramachandran**
 - GitHub: [@AshwinRamachandran2002](https://github.com/AshwinRamachandran2002)
-- Project Link: [https://github.com/AshwinRamachandran2002/Agent_Red_Team](https://github.com/AshwinRamachandran2002/Agent_Red_Team)
+- Project Link: [https://github.com/AshwinRamachandran2002/mcp-security-analyzer](https://github.com/AshwinRamachandran2002/mcp-security-analyzer)
 
 ---
 
 ## 🌟 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=AshwinRamachandran2002/Agent_Red_Team&type=Date)](https://star-history.com/#AshwinRamachandran2002/Agent_Red_Team&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=AshwinRamachandran2002/mcp-security-analyzer&type=Date)](https://star-history.com/#AshwinRamachandran2002/mcp-security-analyzer&Date)
 
 ---
 
