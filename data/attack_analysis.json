@@ -1,0 +1,353 @@
+{
+  "attack_patterns": [
+    {
+      "id": "EXFIL-001",
+      "name": "GitHub Repository Data Exfiltration",
+      "description": "Extraction of sensitive data from GitHub repositories",
+      "service": "github-remote",
+      "attack_type": "data_exfiltration",
+      "risk_score": 8.5,
+      "primary_functions": [
+        "get_file_contents",
+        "list_branches",
+        "list_tags",
+        "get_commit",
+        "get_pull_request_files"
+      ],
+      "typical_sinks": ["public_repo", "private_repo"],
+      "attack_phases": [
+        "Initial Access",
+        "Data Collection",
+        "Exfiltration"
+      ],
+      "logo_url": "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png",
+      "mitigations": [
+        "Repository permission audits",
+        "Content scanning before commits",
+        "Branch protection rules"
+      ]
+    },
+    {
+      "id": "EXFIL-002",
+      "name": "Jira Issue Data Exfiltration",
+      "description": "Extraction of sensitive data from Jira issues and attachments",
+      "service": "jira-tools",
+      "attack_type": "data_exfiltration",
+      "risk_score": 7.8,
+      "primary_functions": [
+        "getJiraIssue",
+        "getJiraIssueRemoteIssueLinks",
+        "searchJiraIssuesUsingJql",
+        "getConfluencePage"
+      ],
+      "typical_sinks": ["jira_issue", "jira_comment"],
+      "attack_phases": [
+        "Initial Access",
+        "Reconnaissance",
+        "Data Collection"
+      ],
+      "logo_url": "https://wac-cdn.atlassian.com/assets/img/favicons/atlassian/favicon.png",
+      "mitigations": [
+        "JQL query restrictions",
+        "Project permission audits",
+        "Attachment scanning"
+      ]
+    },
+    {
+      "id": "EXFIL-003",
+      "name": "Asana Task Data Exfiltration",
+      "description": "Extraction of sensitive data from Asana tasks and attachments",
+      "service": "asana-tools",
+      "attack_type": "data_exfiltration",
+      "risk_score": 6.9,
+      "primary_functions": [
+        "asana_get_attachment",
+        "asana_get_attachments_for_object",
+        "asana_get_task",
+        "asana_get_subtasks"
+      ],
+      "typical_sinks": ["asana_attachment", "asana_task"],
+      "attack_phases": [
+        "Initial Access",
+        "Data Collection",
+        "Exfiltration"
+      ],
+      "logo_url": "https://d1gwm4cf8hecp4.cloudfront.net/images/favicons/apple-touch-icon.png",
+      "mitigations": [
+        "Workspace permission audits",
+        "Attachment scanning",
+        "Access control reviews"
+      ]
+    },
+    {
+      "id": "POISON-001",
+      "name": "GitHub Repository Data Poisoning",
+      "description": "Injection of malicious code or content into GitHub repositories",
+      "service": "github-remote",
+      "attack_type": "data_poisoning",
+      "risk_score": 9.2,
+      "primary_functions": [
+        "create_or_update_file",
+        "push_files",
+        "create_pull_request",
+        "merge_pull_request"
+      ],
+      "typical_sinks": ["code_execution", "ci_pipeline"],
+      "attack_phases": [
+        "Initial Access",
+        "Execution",
+        "Persistence"
+      ],
+      "logo_url": "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png",
+      "mitigations": [
+        "Branch protection rules",
+        "Required code reviews",
+        "CI/CD pipeline scanning"
+      ]
+    },
+    {
+      "id": "POISON-002",
+      "name": "Jira Issue Data Poisoning",
+      "description": "Manipulation of Jira issues to influence business decisions",
+      "service": "jira-tools",
+      "attack_type": "data_poisoning",
+      "risk_score": 7.1,
+      "primary_functions": [
+        "createJiraIssue",
+        "editJiraIssue",
+        "addCommentToJiraIssue",
+        "transitionJiraIssue"
+      ],
+      "typical_sinks": ["business_process", "automated_workflow"],
+      "attack_phases": [
+        "Initial Access",
+        "Execution",
+        "Impact"
+      ],
+      "logo_url": "https://wac-cdn.atlassian.com/assets/img/favicons/atlassian/favicon.png",
+      "mitigations": [
+        "Workflow approvals",
+        "Transition restrictions",
+        "Comment moderation"
+      ]
+    },
+    {
+      "id": "POISON-003",
+      "name": "Asana Task Data Poisoning",
+      "description": "Manipulation of Asana tasks to disrupt project planning",
+      "service": "asana-tools",
+      "attack_type": "data_poisoning",
+      "risk_score": 6.5,
+      "primary_functions": [
+        "asana_create_task",
+        "asana_update_task",
+        "asana_create_subtask",
+        "asana_add_tag"
+      ],
+      "typical_sinks": ["project_management", "business_planning"],
+      "attack_phases": [
+        "Initial Access",
+        "Execution",
+        "Impact"
+      ],
+      "logo_url": "https://d1gwm4cf8hecp4.cloudfront.net/images/favicons/apple-touch-icon.png",
+      "mitigations": [
+        "Task approval workflows",
+        "Change notifications",
+        "Role-based access control"
+      ]
+    }
+  ],
+  "function_risk_metrics": {
+    "github-remote": {
+      "get_file_contents": {
+        "risk_score": 8.7,
+        "attack_frequency": "High",
+        "data_access_type": "Read",
+        "data_sensitivity_impact": "High",
+        "typical_attack_vectors": ["EXFIL-001"],
+        "common_targets": ["customer-data", "auth-service", "billing-system"]
+      },
+      "create_or_update_file": {
+        "risk_score": 9.5,
+        "attack_frequency": "High",
+        "data_access_type": "Write",
+        "data_sensitivity_impact": "Critical",
+        "typical_attack_vectors": ["POISON-001"],
+        "common_targets": ["open-source-lib", "auth-service", "billing-system"]
+      },
+      "get_pull_request": {
+        "risk_score": 6.8,
+        "attack_frequency": "Medium",
+        "data_access_type": "Read",
+        "data_sensitivity_impact": "Medium",
+        "typical_attack_vectors": ["EXFIL-001"],
+        "common_targets": ["internal-tools", "customer-data"]
+      },
+      "create_pull_request": {
+        "risk_score": 8.9,
+        "attack_frequency": "Medium",
+        "data_access_type": "Write",
+        "data_sensitivity_impact": "High",
+        "typical_attack_vectors": ["POISON-001"],
+        "common_targets": ["public-api", "docs-site", "open-source-lib"]
+      },
+      "merge_pull_request": {
+        "risk_score": 9.3,
+        "attack_frequency": "Medium",
+        "data_access_type": "Execute",
+        "data_sensitivity_impact": "Critical",
+        "typical_attack_vectors": ["POISON-001"],
+        "common_targets": ["open-source-lib", "auth-service"]
+      }
+    },
+    "jira-tools": {
+      "getJiraIssue": {
+        "risk_score": 7.5,
+        "attack_frequency": "High",
+        "data_access_type": "Read",
+        "data_sensitivity_impact": "High",
+        "typical_attack_vectors": ["EXFIL-002"],
+        "common_targets": ["Security Issues", "Financial Planning", "HR Management"]
+      },
+      "createJiraIssue": {
+        "risk_score": 6.9,
+        "attack_frequency": "Medium",
+        "data_access_type": "Write",
+        "data_sensitivity_impact": "Medium",
+        "typical_attack_vectors": ["POISON-002"],
+        "common_targets": ["Internal Operations", "Security Issues"]
+      },
+      "editJiraIssue": {
+        "risk_score": 7.8,
+        "attack_frequency": "Medium",
+        "data_access_type": "Write",
+        "data_sensitivity_impact": "High",
+        "typical_attack_vectors": ["POISON-002"],
+        "common_targets": ["Security Issues", "Financial Planning"]
+      },
+      "getConfluencePage": {
+        "risk_score": 7.2,
+        "attack_frequency": "High",
+        "data_access_type": "Read",
+        "data_sensitivity_impact": "High",
+        "typical_attack_vectors": ["EXFIL-002"],
+        "common_targets": ["Internal Operations", "HR Management"]
+      }
+    },
+    "asana-tools": {
+      "asana_get_attachment": {
+        "risk_score": 7.1,
+        "attack_frequency": "Medium",
+        "data_access_type": "Read",
+        "data_sensitivity_impact": "High",
+        "typical_attack_vectors": ["EXFIL-003"],
+        "common_targets": ["Engineering Tasks", "Executive Planning", "Legal Documents"]
+      },
+      "asana_create_task": {
+        "risk_score": 6.3,
+        "attack_frequency": "Medium",
+        "data_access_type": "Write",
+        "data_sensitivity_impact": "Medium",
+        "typical_attack_vectors": ["POISON-003"],
+        "common_targets": ["Engineering Tasks", "Executive Planning"]
+      },
+      "asana_update_task": {
+        "risk_score": 6.7,
+        "attack_frequency": "Medium",
+        "data_access_type": "Write",
+        "data_sensitivity_impact": "Medium",
+        "typical_attack_vectors": ["POISON-003"],
+        "common_targets": ["Engineering Tasks", "Executive Planning"]
+      }
+    }
+  },
+  "user_risk_profiles": [
+    {
+      "user_id": "user1",
+      "name": "John Smith",
+      "department": "Engineering",
+      "risk_score": 6.8,
+      "access_level": "Standard",
+      "high_risk_functions": [
+        {"service": "github-remote", "function": "create_or_update_file", "risk_score": 9.5},
+        {"service": "github-remote", "function": "get_file_contents", "risk_score": 8.7}
+      ],
+      "high_risk_repositories": [
+        {"name": "open-source-lib", "service": "github-remote", "access_type": "Write", "integrity_score": 3},
+        {"name": "docs-site", "service": "github-remote", "access_type": "Write", "integrity_score": 2}
+      ],
+      "recent_activity": [
+        {"timestamp": "2025-06-25T15:32:00Z", "action": "Modified repository", "repository": "open-source-lib", "service": "github-remote"},
+        {"timestamp": "2025-06-24T11:15:00Z", "action": "Viewed sensitive file", "repository": "docs-site", "service": "github-remote"}
+      ]
+    },
+    {
+      "user_id": "user2",
+      "name": "Sarah Johnson",
+      "department": "Sales",
+      "risk_score": 5.2,
+      "access_level": "Standard",
+      "high_risk_functions": [
+        {"service": "jira-tools", "function": "getJiraIssue", "risk_score": 7.5},
+        {"service": "asana-tools", "function": "asana_get_attachment", "risk_score": 7.1}
+      ],
+      "high_risk_repositories": [
+        {"name": "Community Support", "service": "jira-tools", "access_type": "Write", "integrity_score": 1},
+        {"name": "Marketing Campaigns", "service": "asana-tools", "access_type": "Write", "integrity_score": 1}
+      ],
+      "recent_activity": [
+        {"timestamp": "2025-06-26T09:12:00Z", "action": "Viewed issue", "repository": "Community Support", "service": "jira-tools"},
+        {"timestamp": "2025-06-25T14:45:00Z", "action": "Downloaded attachment", "repository": "Marketing Campaigns", "service": "asana-tools"}
+      ]
+    },
+    {
+      "user_id": "user3",
+      "name": "Michael Chen",
+      "department": "Engineering",
+      "risk_score": 9.1,
+      "access_level": "High",
+      "high_risk_functions": [
+        {"service": "github-remote", "function": "merge_pull_request", "risk_score": 9.3},
+        {"service": "github-remote", "function": "create_or_update_file", "risk_score": 9.5},
+        {"service": "jira-tools", "function": "editJiraIssue", "risk_score": 7.8}
+      ],
+      "high_risk_repositories": [
+        {"name": "auth-service", "service": "github-remote", "access_type": "Admin", "integrity_score": 3},
+        {"name": "billing-system", "service": "github-remote", "access_type": "Write", "integrity_score": 3},
+        {"name": "Security Issues", "service": "jira-tools", "access_type": "Write", "integrity_score": 3}
+      ],
+      "recent_activity": [
+        {"timestamp": "2025-06-26T08:55:00Z", "action": "Merged pull request", "repository": "auth-service", "service": "github-remote"},
+        {"timestamp": "2025-06-25T16:20:00Z", "action": "Modified security issue", "repository": "Security Issues", "service": "jira-tools"},
+        {"timestamp": "2025-06-24T13:45:00Z", "action": "Accessed sensitive file", "repository": "billing-system", "service": "github-remote"}
+      ]
+    }
+  ],
+  "attack_statistics": {
+    "total_attack_vectors": 18,
+    "critical_severity": 4,
+    "high_severity": 7,
+    "medium_severity": 5,
+    "low_severity": 2,
+    "data_exfiltration_count": 10,
+    "data_poisoning_count": 8,
+    "most_targeted_repositories": [
+      {"name": "auth-service", "service": "github-remote", "attack_count": 12},
+      {"name": "customer-data", "service": "github-remote", "attack_count": 10},
+      {"name": "Security Issues", "service": "jira-tools", "attack_count": 8}
+    ],
+    "most_abused_functions": [
+      {"service": "github-remote", "function": "get_file_contents", "count": 14},
+      {"service": "github-remote", "function": "create_or_update_file", "count": 11},
+      {"service": "jira-tools", "function": "getJiraIssue", "count": 9}
+    ],
+    "attack_trends": [
+      {"date": "2025-06-26", "count": 3},
+      {"date": "2025-06-25", "count": 5},
+      {"date": "2025-06-24", "count": 4},
+      {"date": "2025-06-23", "count": 2},
+      {"date": "2025-06-22", "count": 4}
+    ]
+  }
+}

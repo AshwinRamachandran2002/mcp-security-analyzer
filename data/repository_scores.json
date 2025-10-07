@@ -1,0 +1,219 @@
+{
+  "github-remote": {
+    "public_repos": [
+      {
+        "name": "public-api",
+        "url": "https://github.com/company/public-api",
+        "confidentiality_score": 1,
+        "integrity_score": 2,
+        "malicious_edit_risk": true,
+        "description": "Public API documentation and examples",
+        "accessibility": "public"
+      },
+      {
+        "name": "docs-site",
+        "url": "https://github.com/company/docs-site",
+        "confidentiality_score": 1,
+        "integrity_score": 2,
+        "malicious_edit_risk": true,
+        "description": "Company documentation website",
+        "accessibility": "public"
+      },
+      {
+        "name": "open-source-lib",
+        "url": "https://github.com/company/open-source-lib",
+        "confidentiality_score": 1,
+        "integrity_score": 3,
+        "malicious_edit_risk": true,
+        "description": "Open source library with high integrity risk",
+        "accessibility": "public"
+      }
+    ],
+    "private_repos": [
+      {
+        "name": "internal-tools",
+        "url": "https://github.com/company/internal-tools",
+        "confidentiality_score": 2,
+        "integrity_score": 3,
+        "malicious_edit_risk": false,
+        "description": "Internal development tools and scripts",
+        "accessibility": "private"
+      },
+      {
+        "name": "customer-data",
+        "url": "https://github.com/company/customer-data",
+        "confidentiality_score": 3,
+        "integrity_score": 3,
+        "malicious_edit_risk": false,
+        "description": "Customer data processing and analytics",
+        "accessibility": "private"
+      },
+      {
+        "name": "auth-service",
+        "url": "https://github.com/company/auth-service",
+        "confidentiality_score": 3,
+        "integrity_score": 3,
+        "malicious_edit_risk": false,
+        "description": "Authentication and authorization service",
+        "accessibility": "private"
+      },
+      {
+        "name": "billing-system",
+        "url": "https://github.com/company/billing-system",
+        "confidentiality_score": 3,
+        "integrity_score": 3,
+        "malicious_edit_risk": false,
+        "description": "Financial billing and payment processing",
+        "accessibility": "private"
+      }
+    ]
+  },
+  "jira-tools": {
+    "public_projects": [
+      {
+        "name": "Community Support",
+        "key": "CS",
+        "url": "https://company.atlassian.net/browse/CS",
+        "confidentiality_score": 1,
+        "integrity_score": 1,
+        "malicious_edit_risk": true,
+        "description": "Public community support tickets",
+        "accessibility": "public"
+      },
+      {
+        "name": "Public Roadmap",
+        "key": "PR",
+        "url": "https://company.atlassian.net/browse/PR",
+        "confidentiality_score": 1,
+        "integrity_score": 2,
+        "malicious_edit_risk": true,
+        "description": "Public product roadmap and features",
+        "accessibility": "public"
+      }
+    ],
+    "private_projects": [
+      {
+        "name": "Internal Operations",
+        "key": "IO",
+        "url": "https://company.atlassian.net/browse/IO",
+        "confidentiality_score": 2,
+        "integrity_score": 2,
+        "malicious_edit_risk": false,
+        "description": "Internal operational procedures and tasks",
+        "accessibility": "private"
+      },
+      {
+        "name": "Security Issues",
+        "key": "SEC",
+        "url": "https://company.atlassian.net/browse/SEC",
+        "confidentiality_score": 3,
+        "integrity_score": 3,
+        "malicious_edit_risk": false,
+        "description": "Security vulnerabilities and incident management",
+        "accessibility": "private"
+      },
+      {
+        "name": "HR Management",
+        "key": "HR",
+        "url": "https://company.atlassian.net/browse/HR",
+        "confidentiality_score": 3,
+        "integrity_score": 2,
+        "malicious_edit_risk": false,
+        "description": "Human resources and employee information",
+        "accessibility": "private"
+      },
+      {
+        "name": "Financial Planning",
+        "key": "FIN",
+        "url": "https://company.atlassian.net/browse/FIN",
+        "confidentiality_score": 3,
+        "integrity_score": 3,
+        "malicious_edit_risk": false,
+        "description": "Financial planning and budget information",
+        "accessibility": "private"
+      }
+    ]
+  },
+  "asana-tools": {
+    "public_workspaces": [
+      {
+        "name": "Marketing Campaigns",
+        "url": "https://app.asana.com/0/marketing",
+        "confidentiality_score": 1,
+        "integrity_score": 1,
+        "malicious_edit_risk": true,
+        "description": "Public marketing campaign planning",
+        "accessibility": "public"
+      },
+      {
+        "name": "Product Announcements",
+        "url": "https://app.asana.com/0/announcements",
+        "confidentiality_score": 1,
+        "integrity_score": 2,
+        "malicious_edit_risk": false,
+        "description": "Public product announcements and updates",
+        "accessibility": "public"
+      }
+    ],
+    "private_workspaces": [
+      {
+        "name": "Engineering Tasks",
+        "url": "https://app.asana.com/0/engineering",
+        "confidentiality_score": 2,
+        "integrity_score": 3,
+        "malicious_edit_risk": false,
+        "description": "Engineering project management and tasks",
+        "accessibility": "private"
+      },
+      {
+        "name": "Executive Planning",
+        "url": "https://app.asana.com/0/executive",
+        "confidentiality_score": 3,
+        "integrity_score": 3,
+        "malicious_edit_risk": false,
+        "description": "Executive strategic planning and decisions",
+        "accessibility": "private"
+      },
+      {
+        "name": "Legal Documents",
+        "url": "https://app.asana.com/0/legal",
+        "confidentiality_score": 3,
+        "integrity_score": 3,
+        "malicious_edit_risk": false,
+        "description": "Legal documentation and compliance tracking",
+        "accessibility": "private"
+      }
+    ]
+  },
+  "scoring_legend": {
+    "confidentiality_score": {
+      "1": "Low - Information is public or has minimal confidentiality requirements",
+      "2": "Medium - Information is internal use only with moderate confidentiality requirements",
+      "3": "High - Information is highly sensitive with strict confidentiality requirements"
+    },
+    "integrity_score": {
+      "1": "Low - Data modification has minimal business impact",
+      "2": "Medium - Data modification has moderate business impact and requires approval",
+      "3": "High - Data modification has severe business impact and requires strict controls"
+    },
+    "malicious_edit_risk": {
+      "true": "Repository/project can be edited by malicious actors through attack vectors",
+      "false": "Repository/project is read-only or has strong write protection mechanisms"
+    }
+  },
+  "summary": {
+    "total_repositories": 18,
+    "high_confidentiality": 8,
+    "high_integrity": 10,
+    "malicious_edit_vulnerable": 7,
+    "critical_risk_repos": [
+      "customer-data",
+      "auth-service", 
+      "billing-system",
+      "Security Issues",
+      "Financial Planning",
+      "Executive Planning",
+      "Legal Documents"
+    ]
+  }
+}

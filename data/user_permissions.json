@@ -1,0 +1,80 @@
+{
+  "users": [
+    {
+      "id": "user1",
+      "name": "John Smith",
+      "email": "john.smith@company.com",
+      "department": "Engineering",
+      "roles": ["engineering"],
+      "security_clearance": "Standard",
+      "mfa_enabled": true,
+      "last_login": "2024-01-15T08:00:00Z"
+    },
+    {
+      "id": "user2",
+      "name": "Sarah Johnson",
+      "email": "sarah.johnson@company.com",
+      "department": "Sales",
+      "roles": ["sales"],
+      "security_clearance": "Standard",
+      "mfa_enabled": true,
+      "last_login": "2024-01-15T09:30:00Z"
+    },
+    {
+      "id": "user3",
+      "name": "Michael Chen",
+      "email": "michael.chen@company.com",
+      "department": "Engineering",
+      "roles": ["engineering", "senior_engineering", "admin"],
+      "security_clearance": "High",
+      "mfa_enabled": true,
+      "last_login": "2024-01-15T07:45:00Z"
+    }
+  ],
+  "security_clearance_levels": {
+    "Standard": {
+      "description": "Basic employee access level",
+      "max_confidentiality_access": 2,
+      "requires_mfa": false
+    },
+    "High": {
+      "description": "Elevated access for sensitive data handling",
+      "max_confidentiality_access": 3,
+      "requires_mfa": true
+    },
+    "Executive": {
+      "description": "Executive level access with strategic oversight",
+      "max_confidentiality_access": 3,
+      "requires_mfa": true
+    }
+  },
+  "access_violations": [
+  ],
+  "high_risk_access_patterns": [
+    {
+      "pattern": "admin_access_financial",
+      "users": ["user3", "user5", "user10"],
+      "repositories": ["billing-system", "Financial Planning"],
+      "risk_description": "Administrative access to financial systems"
+    },
+    {
+      "pattern": "cross_department_access",
+      "users": ["user3", "user10"],
+      "risk_description": "Users with multiple high-privilege roles across departments"
+    },
+    {
+      "pattern": "security_system_access",
+      "users": ["user3", "user5"],
+      "repositories": ["auth-service", "Security Issues"],
+      "risk_description": "Direct access to security infrastructure"
+    }
+  ],
+  "summary": {
+    "total_users": 10,
+    "users_with_admin_roles": 3,
+    "users_without_mfa": 2,
+    "high_risk_users": 3,
+    "total_roles": 10,
+    "users_with_multiple_roles": 2
+  }
+}

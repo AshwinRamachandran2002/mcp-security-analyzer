@@ -1,0 +1,152 @@
+import Link from "next/link";
+import { Breadcrumbs } from "@/components/parts/breadcrumbs";
+import { Header } from "@/components/parts/header";
+import { PageWrapper } from "@/components/parts/page-wrapper";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Database, ChevronRight, ExternalLink, Shield, AlertTriangle } from "lucide-react";
+
+// Import actual function data
+import githubData from '../../data/github_functions.json';
+import jiraData from '../../data/jira_functions.json';
+
+const pageData = {
+  name: "Integrations",
+  title: "Connected Integrations",
+  description: "Manage and monitor your Agentic Tool Integrations connections",
+};
+
+export default function Page() {
+  // Get actual function counts from data files
+  const githubFunctionCount = Object.keys(githubData['github-remote'] || {}).length;
+  const jiraFunctionCount = Object.keys(jiraData['jira-tools'] || {}).length;
+  
+  const servers = {
+    "github-remote": {
+      url: "github://repositories",
+      function_count: githubFunctionCount,
+      last_updated: "Static Data",
+      has_auth: true
+    },
+    "jira-tools": {
+      url: "jira://projects",
+      function_count: jiraFunctionCount,
+      last_updated: "Static Data",
+      has_auth: true
+    }
+  };
+
+  return (
+    <>
+      <Breadcrumbs pageName={pageData?.name} />
+      <PageWrapper>
+        <Header title={pageData?.title}>{pageData?.description}</Header>
+        
+        <div className="space-y-6">
+          {/* Information Card */}
+          <Card className="overflow-hidden">
+            <div className="bg-gradient-to-r from-primary/10 to-primary/5 border-b">
+              <CardHeader>
+                <CardTitle className="text-xl">About Agentic Tool Integrations</CardTitle>
+              </CardHeader>
+            </div>
+            <CardContent className="p-6 grid gap-4 sm:grid-cols-1 md:grid-cols-2">
+              <div className="space-y-3">
+                <h4 className="font-medium text-primary">Manage Your Agent's Tools</h4>
+                <p className="text-muted-foreground text-sm">
+                  This dashboard provides a central location for managing and monitoring the external tools and 
+                  services your AI agent can access. Add your own integrations here to extend your agent's capabilities.
+                </p>
+              </div>
+              <div className="space-y-3">
+                <h4 className="font-medium text-primary">Security Analysis</h4>
+                <p className="text-muted-foreground text-sm">
+                  Each integration is automatically analyzed for potential security vulnerabilities and attack vectors.
+                  Understand the exposure points and protect your agent from prompt injection and data leakage risks.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+          
+          {/* Server Statistics */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Card>
+              <CardContent className="p-6 text-center">
+                <div className="text-3xl font-bold mb-2">{Object.keys(servers).length}</div>
+                <div className="text-sm text-muted-foreground">Total Integrations</div>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardContent className="p-6 text-center">
+                <div className="text-3xl font-bold mb-2">
+                  {Object.values(servers).reduce((sum, server) => sum + server.function_count, 0)}
+                </div>
+                <div className="text-sm text-muted-foreground">Total Functions</div>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardContent className="p-6 text-center">
+                <div className="text-3xl font-bold mb-2">
+                  {Object.values(servers).filter(server => server.has_auth).length}
+                </div>
+                <div className="text-sm text-muted-foreground">Authenticated</div>
+              </CardContent>
+            </Card>
+          </div>
+          
+          {/* Connected Servers Section */}
+          <div className="mt-8">
+            <div className="flex items-center mb-4">
+              <Shield className="mr-2 h-5 w-5 text-primary" />
+              <h2 className="text-xl font-semibold">Available Integrations</h2>
+            </div>
+            <p className="text-muted-foreground text-sm mb-4">
+              Below are the tool integrations currently available for your agent. Select an integration to view its functions and security analysis.
+            </p>
+            <Card>
+              <CardContent className="p-0">
+                {Object.entries(servers).map(([serverName, serverInfo]) => (
+                  <Link
+                    key={serverName}
+                    href={`/servers/${serverName}`}
+                    className="block p-4 flex flex-col md:flex-row md:items-center md:justify-between hover:bg-accent/50 transition-colors duration-150 border-b last:border-b-0"
+                  >
+                    <div className="mb-2 md:mb-0">
+                      <div className="text-xl font-semibold flex items-center">
+                        <Database className="mr-2" />
+                        {serverName}
+                        {!serverInfo.has_auth && (
+                          <Badge variant="outline" className="ml-2">
+                            Missing Authentication
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-muted-foreground text-sm mt-1 flex items-center">
+                        <ExternalLink className="mr-1 h-3 w-3" />
+                        {serverInfo.url}
+                      </p>
+                      <p className="text-muted-foreground text-xs mt-1">
+                        Last updated: {serverInfo.last_updated}
+                      </p>
+                    </div>
+                    <div className="flex items-center space-x-2 md:space-x-6">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold">{serverInfo.function_count}</div>
+                        <div className="text-xs text-muted-foreground">Functions</div>
+                      </div>
+                      <div>
+                        <ChevronRight />
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </PageWrapper>
+    </>
+  );
+}

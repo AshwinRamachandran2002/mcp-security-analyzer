@@ -1,0 +1,12 @@
+[
+  {
+    "endpoint_id": "endpoint_Ashwins_MacBook_Air_local",
+    "hostname": "Ashwins-MacBook-Air.local",
+    "environment": "development",
+    "business_unit": "security_team",
+    "owner": "ashwin",
+    "registered_at": 1759773284,
+    "scan_frequency": 60,
+    "enabled": true
+  }
+]

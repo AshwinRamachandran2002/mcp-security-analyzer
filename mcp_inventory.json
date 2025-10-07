@@ -1,0 +1,376 @@
+{
+  "schema_version": "2.0",
+  "collector_version": "2.0.0",
+  "scan_id": "068b776c-0a3c-4f0e-abe5-e801977deb2d",
+  "meta": {
+    "hostname": "Ashwins-MacBook-Air.local",
+    "os": {
+      "system": "Darwin",
+      "release": "24.6.0"
+    },
+    "user": {
+      "os_user": "ashwin"
+    },
+    "collected_at": 1759773281,
+    "scan_duration_ms": 3186
+  },
+  "configs": [
+    {
+      "path": "/Users/ashwin/Agent_Red_Team/.vscode/mcp.json",
+      "mtime": 1759729145,
+      "sha256": "bf9d172098526b40e12a9b8e7940e18f374a27f48e10e8d52468598cc8b7a0d1",
+      "servers": [
+        {
+          "name": "github",
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "@modelcontextprotocol/server-github"
+          ],
+          "fingerprint": "8fa0d929edaae1e0"
+        },
+        {
+          "name": "filesystem",
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "@modelcontextprotocol/server-filesystem",
+            "/Users"
+          ],
+          "fingerprint": "3589a6876eea68b5"
+        }
+      ],
+      "repo_context": {
+        "name": "Agent_Red_Team",
+        "branch": "tap_github",
+        "owner": "AshwinRamachandran2002",
+        "remote_url": "https://github.com/AshwinRamachandran2002/Agent_Red_Team.git"
+      }
+    },
+    {
+      "path": "/Users/ashwin/Agent_Red_Team/mcp.json",
+      "mtime": 1750579363,
+      "sha256": "4e2207c056283addf6eeb64e3bb1081ae1c12f7e161ab710bfee5f7b8828064f",
+      "servers": [
+        {
+          "name": "github-remote",
+          "transport": "http",
+          "args": [],
+          "url": "https://api.githubcopilot.com/mcp/",
+          "fingerprint": "c9e0aad54e26dbbc"
+        },
+        {
+          "name": "jira-tools",
+          "transport": "http",
+          "args": [],
+          "url": "https://mcp.atlassian.com/v1/sse",
+          "fingerprint": "b23bbfdfaad2ad20"
+        }
+      ],
+      "repo_context": {
+        "name": "Agent_Red_Team",
+        "branch": "tap_github",
+        "owner": "AshwinRamachandran2002",
+        "remote_url": "https://github.com/AshwinRamachandran2002/Agent_Red_Team.git"
+      }
+    },
+    {
+      "path": "/Users/ashwin/Agent_Red_Team/test_mcp.json",
+      "mtime": 1759729145,
+      "sha256": "16c86fcd5549dd54a22a8571eb3aaed25b886aeaf2d4920fae96d2b6014ce0b9",
+      "servers": [
+        {
+          "name": "github-stdio",
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "@modelcontextprotocol/server-github"
+          ],
+          "fingerprint": "8fa0d929edaae1e0"
+        },
+        {
+          "name": "filesystem-stdio",
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "@modelcontextprotocol/server-filesystem",
+            "/Users"
+          ],
+          "fingerprint": "3589a6876eea68b5"
+        },
+        {
+          "name": "example-http",
+          "transport": "http",
+          "args": [],
+          "url": "https://api.example.com/mcp",
+          "fingerprint": "58acd166f9c97cbd"
+        }
+      ],
+      "repo_context": {
+        "name": "Agent_Red_Team",
+        "branch": "tap_github",
+        "owner": "AshwinRamachandran2002",
+        "remote_url": "https://github.com/AshwinRamachandran2002/Agent_Red_Team.git"
+      }
+    }
+  ],
+  "processes": {
+    "supported": true,
+    "items": [
+      {
+        "pid": 76491,
+        "ppid": 75899,
+        "parent_name": "/private/var/fol",
+        "cmd": "exec @modelc npm exec @modelcontextprotocol/server-github",
+        "cmd_redacted": "exec @modelc npm exec @modelcontextprotocol/server-github",
+        "first_seen": 1759773281,
+        "last_seen": 1759773284,
+        "fingerprint": "ee2292ce12233377"
+      },
+      {
+        "pid": 76508,
+        "ppid": 76491,
+        "parent_name": "/private/var/fol",
+        "cmd": "node /Users/ashwin/.npm/_npx/3dfbf5a9eea4a1b3/node_modules/.bin/mcp-server-github",
+        "cmd_redacted": "node /Users/ashwin/.npm/_npx/3dfbf5a9eea4a1b3/node_modules/.bin/mcp-server-github",
+        "first_seen": 1759773281,
+        "last_seen": 1759773284,
+        "fingerprint": "5a87e02fd2b268fc"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "severity": "high",
+      "type": "mcp_stdio_process",
+      "evidence": [
+        "/private/var/fol → exec @modelc npm exec @modelcontextprotocol/server-github"
+      ],
+      "owner_hint": "IDE user",
+      "fingerprint": "ee2292ce12233377",
+      "evidence_bundle": {
+        "file_path": "",
+        "file_hash": "",
+        "parent_ide": "/private/var/fol",
+        "cmdline_redacted": "exec @modelc npm exec @modelcontextprotocol/server-github",
+        "first_seen": 1759773281,
+        "last_seen": 1759773284
+      },
+      "risk_boosters": []
+    },
+    {
+      "severity": "high",
+      "type": "mcp_stdio_process",
+      "evidence": [
+        "/private/var/fol → node /Users/ashwin/.npm/_npx/3dfbf5a9eea4a1b3/node_modules/.bin/mcp-server-github"
+      ],
+      "owner_hint": "IDE user",
+      "fingerprint": "5a87e02fd2b268fc",
+      "evidence_bundle": {
+        "file_path": "",
+        "file_hash": "",
+        "parent_ide": "/private/var/fol",
+        "cmdline_redacted": "node /Users/ashwin/.npm/_npx/3dfbf5a9eea4a1b3/node_modules/.bin/mcp-server-github",
+        "first_seen": 1759773281,
+        "last_seen": 1759773284
+      },
+      "risk_boosters": []
+    },
+    {
+      "severity": "high",
+      "type": "mcp_stdio_config",
+      "evidence": [
+        "npx @modelcontextprotocol/server-github"
+      ],
+      "source_file": "/Users/ashwin/Agent_Red_Team/.vscode/mcp.json",
+      "fingerprint": "8fa0d929edaae1e0",
+      "evidence_bundle": {
+        "file_path": "/Users/ashwin/Agent_Red_Team/.vscode/mcp.json",
+        "file_hash": "bf9d172098526b40e12a9b8e7940e18f374a27f48e10e8d52468598cc8b7a0d1",
+        "cmdline_redacted": "npx @modelcontextprotocol/server-github",
+        "first_seen": 1759773284,
+        "last_seen": 1759773284,
+        "repo_context": {
+          "name": "Agent_Red_Team",
+          "branch": "tap_github",
+          "owner": "AshwinRamachandran2002",
+          "remote_url": "https://github.com/AshwinRamachandran2002/Agent_Red_Team.git"
+        }
+      },
+      "risk_boosters": [
+        "filesystem_access",
+        "stdio_with_command"
+      ]
+    },
+    {
+      "severity": "high",
+      "type": "mcp_stdio_config",
+      "evidence": [
+        "npx @modelcontextprotocol/server-filesystem /Users"
+      ],
+      "source_file": "/Users/ashwin/Agent_Red_Team/.vscode/mcp.json",
+      "fingerprint": "3589a6876eea68b5",
+      "evidence_bundle": {
+        "file_path": "/Users/ashwin/Agent_Red_Team/.vscode/mcp.json",
+        "file_hash": "bf9d172098526b40e12a9b8e7940e18f374a27f48e10e8d52468598cc8b7a0d1",
+        "cmdline_redacted": "npx @modelcontextprotocol/server-filesystem /Users",
+        "first_seen": 1759773284,
+        "last_seen": 1759773284,
+        "repo_context": {
+          "name": "Agent_Red_Team",
+          "branch": "tap_github",
+          "owner": "AshwinRamachandran2002",
+          "remote_url": "https://github.com/AshwinRamachandran2002/Agent_Red_Team.git"
+        }
+      },
+      "risk_boosters": [
+        "filesystem_access",
+        "stdio_with_command"
+      ]
+    },
+    {
+      "severity": "med",
+      "type": "mcp_http_config",
+      "url_host": "api.githubcopilot.com",
+      "path": "/mcp/",
+      "source_file": "/Users/ashwin/Agent_Red_Team/mcp.json",
+      "fingerprint": "c9e0aad54e26dbbc",
+      "evidence_bundle": {
+        "file_path": "/Users/ashwin/Agent_Red_Team/mcp.json",
+        "file_hash": "4e2207c056283addf6eeb64e3bb1081ae1c12f7e161ab710bfee5f7b8828064f",
+        "cmdline_redacted": "https://api.githubcopilot.com/mcp/",
+        "first_seen": 1759773284,
+        "last_seen": 1759773284,
+        "repo_context": {
+          "name": "Agent_Red_Team",
+          "branch": "tap_github",
+          "owner": "AshwinRamachandran2002",
+          "remote_url": "https://github.com/AshwinRamachandran2002/Agent_Red_Team.git"
+        }
+      },
+      "risk_boosters": []
+    },
+    {
+      "severity": "high",
+      "type": "mcp_http_config",
+      "url_host": "mcp.atlassian.com",
+      "path": "/v1/sse",
+      "source_file": "/Users/ashwin/Agent_Red_Team/mcp.json",
+      "fingerprint": "b23bbfdfaad2ad20",
+      "evidence_bundle": {
+        "file_path": "/Users/ashwin/Agent_Red_Team/mcp.json",
+        "file_hash": "4e2207c056283addf6eeb64e3bb1081ae1c12f7e161ab710bfee5f7b8828064f",
+        "cmdline_redacted": "https://mcp.atlassian.com/v1/sse",
+        "first_seen": 1759773284,
+        "last_seen": 1759773284,
+        "repo_context": {
+          "name": "Agent_Red_Team",
+          "branch": "tap_github",
+          "owner": "AshwinRamachandran2002",
+          "remote_url": "https://github.com/AshwinRamachandran2002/Agent_Red_Team.git"
+        }
+      },
+      "risk_boosters": [
+        "unsanctioned_host"
+      ]
+    },
+    {
+      "severity": "high",
+      "type": "mcp_stdio_config",
+      "evidence": [
+        "npx @modelcontextprotocol/server-github"
+      ],
+      "source_file": "/Users/ashwin/Agent_Red_Team/test_mcp.json",
+      "fingerprint": "8fa0d929edaae1e0",
+      "evidence_bundle": {
+        "file_path": "/Users/ashwin/Agent_Red_Team/test_mcp.json",
+        "file_hash": "16c86fcd5549dd54a22a8571eb3aaed25b886aeaf2d4920fae96d2b6014ce0b9",
+        "cmdline_redacted": "npx @modelcontextprotocol/server-github",
+        "first_seen": 1759773284,
+        "last_seen": 1759773284,
+        "repo_context": {
+          "name": "Agent_Red_Team",
+          "branch": "tap_github",
+          "owner": "AshwinRamachandran2002",
+          "remote_url": "https://github.com/AshwinRamachandran2002/Agent_Red_Team.git"
+        }
+      },
+      "risk_boosters": [
+        "filesystem_access",
+        "stdio_with_command"
+      ]
+    },
+    {
+      "severity": "high",
+      "type": "mcp_stdio_config",
+      "evidence": [
+        "npx @modelcontextprotocol/server-filesystem /Users"
+      ],
+      "source_file": "/Users/ashwin/Agent_Red_Team/test_mcp.json",
+      "fingerprint": "3589a6876eea68b5",
+      "evidence_bundle": {
+        "file_path": "/Users/ashwin/Agent_Red_Team/test_mcp.json",
+        "file_hash": "16c86fcd5549dd54a22a8571eb3aaed25b886aeaf2d4920fae96d2b6014ce0b9",
+        "cmdline_redacted": "npx @modelcontextprotocol/server-filesystem /Users",
+        "first_seen": 1759773284,
+        "last_seen": 1759773284,
+        "repo_context": {
+          "name": "Agent_Red_Team",
+          "branch": "tap_github",
+          "owner": "AshwinRamachandran2002",
+          "remote_url": "https://github.com/AshwinRamachandran2002/Agent_Red_Team.git"
+        }
+      },
+      "risk_boosters": [
+        "filesystem_access",
+        "stdio_with_command"
+      ]
+    },
+    {
+      "severity": "high",
+      "type": "mcp_http_config",
+      "url_host": "api.example.com",
+      "path": "/mcp",
+      "source_file": "/Users/ashwin/Agent_Red_Team/test_mcp.json",
+      "fingerprint": "58acd166f9c97cbd",
+      "evidence_bundle": {
+        "file_path": "/Users/ashwin/Agent_Red_Team/test_mcp.json",
+        "file_hash": "16c86fcd5549dd54a22a8571eb3aaed25b886aeaf2d4920fae96d2b6014ce0b9",
+        "cmdline_redacted": "https://api.example.com/mcp",
+        "first_seen": 1759773284,
+        "last_seen": 1759773284,
+        "repo_context": {
+          "name": "Agent_Red_Team",
+          "branch": "tap_github",
+          "owner": "AshwinRamachandran2002",
+          "remote_url": "https://github.com/AshwinRamachandran2002/Agent_Red_Team.git"
+        }
+      },
+      "risk_boosters": [
+        "unsanctioned_host"
+      ]
+    }
+  ],
+  "metrics": {
+    "coverage": {
+      "configs_found": 3,
+      "repos_with_mcp": 3,
+      "ide_detection_rate": 0
+    },
+    "shadow_mcp": {
+      "stdio_processes": 2,
+      "unsanctioned_hosts": [
+        "mcp.atlassian.com",
+        "api.example.com"
+      ]
+    },
+    "performance": {
+      "time_to_evidence_ms": 3186,
+      "scan_duration_ms": 3186
+    },
+    "drift": {
+      "configs_changed": 0,
+      "new_findings": 0
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "roles": {
+    "engineering": {
+      "name": "Engineering",
+      "description": "Software development and technical operations",
+      "repository_permissions": [
+        {
+          "repo_name": "public-api",
+          "service": "github-remote",
+          "access_type": "Write"
+        },
+        {
+          "repo_name": "docs-site", 
+          "service": "github-remote",
+          "access_type": "Write"
+        },
+        {
+          "repo_name": "open-source-lib",
+          "service": "github-remote", 
+          "access_type": "Write"
+        }
+      ]
+    },
+    "senior_engineering": {
+      "name": "Senior Engineering",
+      "description": "Senior software engineers with elevated access",
+      "repository_permissions": [
+        {
+          "repo_name": "customer-data",
+          "service": "github-remote",
+          "access_type": "Write"
+        },
+        {
+          "repo_name": "billing-system",
+          "service": "github-remote",
+          "access_type": "Write"
+        },
+        {
+          "repo_name": "Security Issues",
+          "service": "jira-tools",
+          "access_type": "Write"
+        }
+      ]
+    },
+    "admin": {
+      "name": "System Administrator",
+      "description": "Full system administration access",
+      "repository_permissions": [
+        {
+          "repo_name": "auth-service",
+          "service": "github-remote", 
+          "access_type": "Admin"
+        },
+        {
+          "repo_name": "billing-system",
+          "service": "github-remote",
+          "access_type": "Admin"
+        },
+        {
+          "repo_name": "customer-data",
+          "service": "github-remote",
+          "access_type": "Admin"
+        }
+      ]
+    },
+    "sales": {
+      "name": "Sales Team",
+      "description": "Customer-facing sales operations",
+      "repository_permissions": [
+        {
+          "repo_name": "docs-site",
+          "service": "github-remote",
+          "access_type": "Read"
+        },
+        {
+          "repo_name": "Community Support",
+          "service": "jira-tools",
+          "access_type": "Read"
+        }
+      ]
+    }
+  },
+  "permission_matrix": {
+    "Read": {
+      "description": "View-only access to repositories and projects",
+      "capabilities": ["view_files", "read_issues", "view_tasks"],
+      "risk_level": "Low"
+    },
+    "Write": {
+      "description": "Full read and write access to repositories and projects",
+      "capabilities": ["view_files", "edit_files", "create_files", "manage_issues", "full_task_management"],
+      "risk_level": "High"
+    },
+    "Admin": {
+      "description": "Full administrative access including user management",
+      "capabilities": ["all_write_permissions", "user_management", "permission_management", "system_configuration"],
+      "risk_level": "Critical"
+    }
+  }
+}
