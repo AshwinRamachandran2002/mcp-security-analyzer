@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/ashwinramachandran2002-mcp-security-analyzer-badge.png)](https://mseep.ai/app/ashwinramachandran2002-mcp-security-analyzer)
+
 # 🛡️ MCP Security Analyzer
 
 **Automated security analysis and attack vector detection for Model Context Protocol (MCP) servers**
